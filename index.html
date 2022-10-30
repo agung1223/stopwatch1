@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css"">
+    <title>StopWatch</title>
+</head>
+
+<body>
+    <center>
+        <div class="container">
+            <div class="class="button-17""></div>
+            <h4 id="heading">DIGITAL STOPWATCH</h4>
+            <h1 id="timer">0:0:0:0</h1>
+            
+
+            <button class="button-17" role="button" id="start">Start</button>
+
+
+            <button class="button-17" role="button" id="stop">Stop</button>
+
+
+            <button class="button-17" role="button" id="reset">Reset</button>
+        </div>
+        </div>
+    </center>
+    <div class="container1">
+    <footer>
+        <div class="footer-content">
+        <h3>StopWatch</h3>
+        <div class="footerContainer">
+            <p class="copyright">©agungsusilo682</p>
+        </div>
+      </footer>
+    </div>
+</div>
+    </div>
+</body>
+<script>
+let hours = 0
+let min = 0;
+let sec = 0;
+let miliSec = 0;
+let timer;
+
+function callTimer() {
+    miliSec++;
+    if (miliSec < 100) {
+        if (miliSec === 99) {
+            miliSec = 0;
+            sec++;
+            if (sec === 60)  {
+                sec = 0;
+                min++;
+                if(min ===60){
+                    min =0
+                    hours++
+                }
+            }
+        }
+    }
+    else{
+        miliSec = 0;
+    }
+    document.getElementById("timer").innerHTML = hours + ":" + min + ":" + sec + ":" + miliSec;
+}
+
+
+//ini buat ngestart stopwatch
+function startTimer() {
+    document.getElementById("start").disabled = true;
+    timer = setInterval(callTimer, 10);
+}
+
+//ini buat ngestop stopwatch
+function stopTimer() {
+    document.getElementById("start").disabled = false;
+    clearInterval(timer);
+}
+
+//ini buat ngereset stopwatch
+function resetTimer() {
+    stopTimer();
+    hours = 0
+    min = 0;
+    sec = 0;
+    miliSec = 0;
+    document.getElementById("timer").innerHTML = hours + ":" + min + ":" + sec + ":" + miliSec;
+}
+
+document.getElementById("start").onclick= startTimer
+
+document.getElementById("stop").onclick= stopTimer
+
+document.getElementById("reset").onclick = resetTimer
+
+</script>
+
+</html>
